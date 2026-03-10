@@ -24,7 +24,7 @@ export default async function ProtectedLayout({
           <SideBar />
           <TopBar />
         </AuthSessionProvider>
-        <main className="bg-white w-full p-8">{children}</main>
+        <main className="bg-white w-full p-4 md:p-8">{children}</main>
       </body>
     </html>
   );

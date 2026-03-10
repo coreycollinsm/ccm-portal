@@ -1,7 +1,7 @@
 "use client";
 
+import { protectedNavigationLinks } from "@/config";
 import { LogoLink, LogoutButton, SidebarButton, UserEmail } from "../ui";
-import { BsFillPersonFill } from "react-icons/bs";
 
 export const SideBar = () => {
   return (
@@ -13,12 +13,13 @@ export const SideBar = () => {
           page={"sidebar"}
           text={null}
         />
-        <div className="w-full">
-          <SidebarButton
-            href="/dashboard"
-            text="Visitor Journey"
-            icon={BsFillPersonFill}
-          />
+        <div className="w-full flex flex-col gap-4">
+          {protectedNavigationLinks.map((link) => {
+            const { href, icon, text } = link;
+            return (
+              <SidebarButton key={href} href={href} text={text} icon={icon} />
+            );
+          })}
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full items-center">

@@ -32,7 +32,7 @@ export const SidebarButton = ({
     "flex items-center gap-2 rounded-md py-2 px-3 w-full cursor-pointer border-2 transition-[filter,background-color,border-color,color] hover:bg-(--dark-gray) hover:border-(--dark-gray) hover:text-white text-sm";
   const stateClasses = isActive
     ? "bg-(--black) border-(--black) text-white"
-    : "bg-(--bright-gray) border-(--light-gray)";
+    : "bg-(--light-gray) border-(--gray)";
   const wrapClasses = `${reverse ? "flex-row-reverse justify-end" : "flex-row justify-start"}`;
 
   if (href)

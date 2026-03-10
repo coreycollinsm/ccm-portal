@@ -18,17 +18,25 @@ export const MobileProfileButton = () => {
       }
     };
 
+    const handleEscKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowMenu(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscKeyPress);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscKeyPress);
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="rounded-full bg-(--bright-gray) border border-(--light-gray) p-3 relative cursor-pointer hover:bg-(--light-gray) transition-colors"
+      className="rounded-full bg-(--bright-gray) border border-(--light-gray) p-3 relative cursor-pointer z-99"
     >
       <BsFillPersonFill
         className="text-3xl text-(--medium-gray)"
