@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/sections";
+import { Footer, SiteHeader } from "@/components/sections";
 import { AuthSessionProvider } from "@/context/AuthSessionContext";
 
 export default function RootLayout({
@@ -10,6 +10,7 @@ export default function RootLayout({
     <AuthSessionProvider>
       <SiteHeader />
       {children}
+      <Footer />
     </AuthSessionProvider>
   );
 }

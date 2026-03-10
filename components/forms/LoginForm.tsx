@@ -75,19 +75,32 @@ export const LoginForm = ({ className }: { className?: string }) => {
         <h1>Login</h1>
         <div className="w-full flex flex-col gap-3">
           <input
+            id="email"
             className="w-full input"
             type="email"
+            name="email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             autoComplete="email"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            inputMode="email"
             required
           />
           <input
+            id="password"
             className="w-full input"
             type="password"
+            name="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             autoComplete="current-password"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
             required
           />
         </div>
