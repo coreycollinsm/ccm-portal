@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoLink, MobileNavigationMenu, MobileProfileButton } from "../ui";
+import { LogoLink, MobileNavigationMenu, MobileProfileMenu } from "../ui";
 
 export const TopBar = () => {
   return (
@@ -12,7 +12,7 @@ export const TopBar = () => {
           page={"sidebar"}
           text={null}
         />
-        <MobileProfileButton />
+        <MobileProfileMenu />
       </div>
       <div className="flex flex-col gap-4 w-full items-center">
         <div className="w-full">

@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { UserEmail } from "../inline/UserEmail";
-import { LogoutButton } from "./LogoutButton";
+import { LogoutButton } from "../buttons/LogoutButton";
 import { BsFillPersonFill } from "react-icons/bs";
 
-export const MobileProfileButton = () => {
+export const MobileProfileMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,7 +36,7 @@ export const MobileProfileButton = () => {
   return (
     <div
       ref={containerRef}
-      className="rounded-full bg-(--bright-gray) border border-(--light-gray) p-3 relative cursor-pointer z-99"
+      className="rounded-full bg-(--bright-gray) border border-(--light-gray) p-3 relative cursor-pointer z-99 select-none"
     >
       <BsFillPersonFill
         className="text-3xl text-(--medium-gray)"

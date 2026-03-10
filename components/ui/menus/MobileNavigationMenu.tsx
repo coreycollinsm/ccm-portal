@@ -1,9 +1,10 @@
 "use client";
-import { protectedNavigationLinks } from "@/config";
+import { protectedNavigationLinks, publicNavigationLinks } from "@/config";
 import { SidebarButton } from "../buttons/SidebarButton";
 import { CgChevronDown } from "react-icons/cg";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export const MobileNavigationMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -17,6 +18,8 @@ export const MobileNavigationMenu = () => {
     protectedNavigationLinks.find(
       (link) => normalizePath(link.href) === normalizePath(pathname),
     )?.text ?? "404 Not Found";
+
+  const publicNavCTA = publicNavigationLinks.cta;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,9 +45,10 @@ export const MobileNavigationMenu = () => {
       document.removeEventListener("keydown", handleEscKeyPress);
     };
   }, []);
+
   return (
     <div
-      className="flex items-center h-12 justify-between gap-4 relative"
+      className="flex items-center h-12 justify-between gap-4 relative select-none"
       onClick={() => {
         setShowMenu(!showMenu);
       }}
@@ -57,15 +61,33 @@ export const MobileNavigationMenu = () => {
         />
       </div>
       {showMenu && (
-        <div className="absolute w-full -bottom-5 translate-y-full flex flex-col gap-4 bg-(--bright-gray) p-4 border-(--light-gray) border">
+        <div className="absolute w-full -bottom-2 rounded-md translate-y-full flex flex-col gap-4 bg-(--bright-gray) p-4 border-(--light-gray) border">
           {protectedNavigationLinks.map((link) => {
             const { href, icon, text } = link;
             return (
               <SidebarButton key={href} href={href} text={text} icon={icon} />
             );
           })}
+          <div className="flex flex-wrap justify-center space-x-4 space-y-2">
+            {publicNavigationLinks.links.map((link) => {
+              const { href, text } = link;
+              return <SmallLink key={href} href={href} text={text} />;
+            })}
+            <SmallLink href={publicNavCTA.href} text={publicNavCTA.text} />
+          </div>
         </div>
       )}
     </div>
+  );
+};
+
+const SmallLink = ({ href, text }: { href: string; text: string }) => {
+  return (
+    <Link
+      href={href}
+      className="text-xs cursor-pointer text-(--faded-gray) hover:text-(--dark-gray)"
+    >
+      {text}
+    </Link>
   );
 };

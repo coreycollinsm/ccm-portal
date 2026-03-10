@@ -1,7 +1,6 @@
 // Buttons
 export * from "./buttons/Buttons";
 export * from "./buttons/LogoutButton";
-export * from "./buttons/MobileProfileButton";
 export * from "./buttons/NavLink";
 export * from "./buttons/SidebarButton";
 
@@ -22,3 +21,4 @@ export * from "./inline/UserEmail";
 
 // Menus
 export * from "./menus/MobileNavigationMenu";
+export * from "./menus/MobileProfileMenu";
