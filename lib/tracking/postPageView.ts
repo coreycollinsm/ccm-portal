@@ -1,3 +1,5 @@
+import { getEndpointURL } from "../api/getEndpointURL";
+
 export interface CreatePageViewPayload {
   sessionId: string;
   currentPage: string;
@@ -5,12 +7,7 @@ export interface CreatePageViewPayload {
   timestamp: string;
 }
 
-const DEFAULT_BASE_API_URL = "https://api.coreycollinsm.com";
-const API_PATH = "/tracking/page-views";
-
-const API_URL = process.env.NEXT_PUBLIC_API_ENDPOINT
-  ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}${API_PATH}`
-  : `${DEFAULT_BASE_API_URL}${API_PATH}`;
+const API_URL = getEndpointURL("/tracking/page-views");
 
 export const postPageView = async (
   payload: CreatePageViewPayload,

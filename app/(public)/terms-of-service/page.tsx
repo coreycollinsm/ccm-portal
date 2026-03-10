@@ -124,7 +124,7 @@ const Page = () => {
 
             <ButtonLink
               backwards
-              buttonId="terms-returnhome"
+              buttonId="ccm-portal-terms-returnhome"
               className="self-start"
               href="/"
               page="terms-of-service"

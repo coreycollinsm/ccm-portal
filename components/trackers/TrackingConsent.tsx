@@ -1,11 +1,9 @@
 "use client";
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import { getTimestamp } from "@/utils/dateUtils";
 import { useEffect } from "react";
 
-// API URL Setup
-const API_URL = process.env.NEXT_PUBLIC_API_ENDPOINT
-  ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}`
-  : "https://api.coreycollinsm.com";
+const API_URL = getEndpointURL();
 
 // Storage keys
 const TRACKING_STORAGE_KEY = "trackingId";

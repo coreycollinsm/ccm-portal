@@ -21,7 +21,7 @@ export const BulletListCard = ({
   return (
     <div className={`${className} card round padding flex flex-col gap-4`}>
       <CardHeader header={header} subtitle={subtitle} />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 list">
         {bulletListAsTextArray.map((item) => {
           const { header, listItems } = item;
           return (

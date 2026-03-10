@@ -1,4 +1,5 @@
 "use client";
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import { getTimestamp } from "@/utils/dateUtils";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -12,6 +13,7 @@ export interface BaseButtonProps {
   buttonId: string;
   className?: string;
   darkMode?: boolean;
+  href?: string;
   page: string;
   size?: ButtonSize;
   style?: ButtonStyle;
@@ -49,7 +51,7 @@ const darkStyleClasses = {
 };
 
 const hoverClasses = {
-  primary: "hover:bg-(--gray) hover:border-(--gray)",
+  primary: "hover:bg-(--dark-gray) hover:border-(--dark-gray)",
   secondary: "hover:bg-(--black) hover:text-white",
   tertiary: "hover:bg-(--primary)/50",
 };
@@ -145,18 +147,18 @@ export const SubmitButton = ({
 import Image from "next/image";
 import Logo from "@/public/logo.webp";
 import LightLogo from "@/public/logo-light.webp";
-import { useTrackingConsent } from "@/context/TrackingConsentContext";
 
 export const LogoLink = ({
   buttonId,
   className,
   darkMode = false,
+  href = "/",
   page,
 }: BaseButtonProps) => {
   return (
     <Link
       className={className}
-      href="/"
+      href={href}
       onClick={() => handleClickTracking(page, buttonId)}
     >
       {darkMode ? (
@@ -195,10 +197,7 @@ const AnimatedIcon = ({
 ///////////////////////////
 
 const handleClickTracking = (page: string, buttonId: string) => {
-  // Get the API URL
-  const API_URL = process.env.NEXT_PUBLIC_API_ENDPOINT
-    ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}/tracking/button-clicks`
-    : "https://api.coreycollinsm.com/tracking/button-clicks";
+  const API_URL = getEndpointURL("/tracking/button-clicks");
 
   const timestamp = getTimestamp();
 
