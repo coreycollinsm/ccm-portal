@@ -1,7 +1,6 @@
 import { SideBar, TopBar } from "@/components/sections";
 import { validateAuthSession } from "@/lib/";
 import { redirect } from "next/navigation";
-import "../globals.css";
 import { AuthSessionProvider } from "@/context/AuthSessionContext";
 
 type ProtectedLayoutProps = Readonly<{
@@ -18,14 +17,12 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <html lang="en">
-      <body className="flex md:flex-row flex-col">
-        <AuthSessionProvider>
-          <SideBar />
-          <TopBar />
-        </AuthSessionProvider>
-        <main className="bg-white w-full p-4 md:p-8">{children}</main>
-      </body>
-    </html>
+    <div className="flex md:flex-row flex-col">
+      <AuthSessionProvider>
+        <SideBar />
+        <TopBar />
+      </AuthSessionProvider>
+      <main className="bg-white w-full p-4 md:p-8">{children}</main>
+    </div>
   );
 }
