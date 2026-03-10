@@ -108,7 +108,7 @@ export const LoginForm = ({ className }: { className?: string }) => {
           style="primary"
           text={isLoading ? "Logging In..." : "Login"}
         />
-        <p className="w-full text-xs text-(--bright-gray)">
+        <p className="w-full text-xs text-(--medium-gray)">
           By continuing, you agree to our{" "}
           <Link className="underline" href="/terms-of-service">
             terms of service

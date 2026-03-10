@@ -11,6 +11,7 @@ type AuthSessionUser = {
 type AuthSessionContextValue = {
   isAuthenticated: boolean;
   isLoading: boolean;
+  email: string | null;
 };
 
 const AuthSessionContext = createContext<AuthSessionContextValue | null>(null);
@@ -83,11 +84,13 @@ const getAuthSessionUser = async () => {
 export const AuthSessionProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     const checkSession = async () => {
       const user = await getAuthSessionUser();
       setIsAuthenticated(Boolean(user));
+      setEmail(user?.email ?? null);
       setIsLoading(false);
     };
 
@@ -98,8 +101,9 @@ export const AuthSessionProvider = ({ children }: { children: ReactNode }) => {
     () => ({
       isAuthenticated,
       isLoading,
+      email,
     }),
-    [isAuthenticated, isLoading],
+    [isAuthenticated, isLoading, email],
   );
 
   return (

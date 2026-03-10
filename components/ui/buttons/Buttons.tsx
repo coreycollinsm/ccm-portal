@@ -12,6 +12,7 @@ export interface BaseButtonProps {
   buttonId: string;
   className?: string;
   darkMode?: boolean;
+  href?: string;
   page: string;
   size?: ButtonSize;
   style?: ButtonStyle;
@@ -49,7 +50,7 @@ const darkStyleClasses = {
 };
 
 const hoverClasses = {
-  primary: "hover:bg-(--gray) hover:border-(--gray)",
+  primary: "hover:bg-(--dark-gray) hover:border-(--dark-gray)",
   secondary: "hover:bg-(--black) hover:text-white",
   tertiary: "hover:bg-(--primary)/50",
 };
@@ -145,18 +146,18 @@ export const SubmitButton = ({
 import Image from "next/image";
 import Logo from "@/public/logo.webp";
 import LightLogo from "@/public/logo-light.webp";
-import { useTrackingConsent } from "@/context/TrackingConsentContext";
 
 export const LogoLink = ({
   buttonId,
   className,
   darkMode = false,
+  href = "/",
   page,
 }: BaseButtonProps) => {
   return (
     <Link
       className={className}
-      href="/"
+      href={href}
       onClick={() => handleClickTracking(page, buttonId)}
     >
       {darkMode ? (
