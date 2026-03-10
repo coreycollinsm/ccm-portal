@@ -12,3 +12,16 @@ export const protectedNavigationLinks = [
     icon: BsGraphUp,
   },
 ];
+
+export const publicNavigationLinks = {
+  links: [
+    {
+      text: "Terms of Service",
+      href: "/terms-of-service",
+    },
+  ],
+  cta: {
+    text: "Contact",
+    href: "/contact",
+  },
+};

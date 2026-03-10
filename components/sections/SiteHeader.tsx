@@ -3,9 +3,11 @@
 import { SectionWrapper } from "@/components/sections";
 import { useAuthSession } from "@/context/AuthSessionContext";
 import { ButtonLink, LogoLink, NavLink } from "@/components/ui";
+import { publicNavigationLinks } from "@/config";
 
 export const SiteHeader = () => {
   const { isAuthenticated } = useAuthSession();
+  const cta = publicNavigationLinks.cta;
 
   return (
     <SectionWrapper>
@@ -19,13 +21,20 @@ export const SiteHeader = () => {
         <nav className="flex items-center gap-4">
           {isAuthenticated && <NavLink href="/dashboard">Dashboard</NavLink>}
           {!isAuthenticated && <NavLink href="/login">Log In</NavLink>}
-          <NavLink href="/terms-of-service">Terms of Service</NavLink>
+          {publicNavigationLinks.links.map((link) => {
+            const { href, text } = link;
+            return (
+              <NavLink key={href} href={href}>
+                {text}
+              </NavLink>
+            );
+          })}
           <ButtonLink
-            href={"/contact"}
-            buttonId={"ccm-nav-contact"}
+            href={cta.href}
+            buttonId={"ccm-nav-cta"}
             page={"nav"}
             size="small"
-            text={"Contact"}
+            text={cta.text}
           />
         </nav>
       </div>
