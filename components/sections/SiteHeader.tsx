@@ -18,6 +18,7 @@ export const SiteHeader = () => {
         />
         <nav className="flex items-center gap-4">
           {isAuthenticated && <NavLink href="/dashboard">Dashboard</NavLink>}
+          {!isAuthenticated && <NavLink href="/login">Log In</NavLink>}
           <NavLink href="/terms-of-service">Terms of Service</NavLink>
           <ButtonLink
             href={"/contact"}

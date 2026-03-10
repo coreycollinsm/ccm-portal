@@ -5,12 +5,14 @@ import { usePathname } from "next/navigation";
 import { IconType } from "react-icons";
 
 export const SidebarButton = ({
+  action,
   className,
   href,
   icon: Icon,
   reverse = false,
   text,
 }: {
+  action?: () => void | Promise<void>;
   className?: string;
   href?: string;
   icon: IconType;
@@ -45,11 +47,13 @@ export const SidebarButton = ({
     );
 
   return (
-    <div
+    <button
       className={`${baseStyleClasses} ${stateClasses} ${wrapClasses} ${className}`}
+      onClick={typeof action === "function" ? () => void action() : undefined}
+      type="button"
     >
       <Icon />
       {text}
-    </div>
+    </button>
   );
 };
