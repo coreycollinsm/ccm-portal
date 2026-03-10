@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-export const MobileNavigationMenu = () => {
+export const PrivateMobileNavigationMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();

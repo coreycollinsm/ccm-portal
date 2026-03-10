@@ -16,8 +16,16 @@ export const protectedNavigationLinks = [
 export const publicNavigationLinks = {
   links: [
     {
+      text: "Home",
+      href: "/",
+    },
+    {
       text: "Terms of Service",
       href: "/terms-of-service",
+    },
+    {
+      text: "Main Site",
+      href: "https://coreycollinsm.com",
     },
   ],
   cta: {

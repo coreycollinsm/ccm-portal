@@ -27,18 +27,20 @@ export const Footer = () => {
         <div className="card-dark round padding flex-2 flex flex-col gap-16 items-start">
           <div className="flex flex-col gap-4">
             <h4>Quick Links</h4>
-            {publicNavigationLinks.links.map((link) => {
-              const { href, text } = link;
-              return (
-                <Link
-                  key={`footer-${href}`}
-                  className="hover:text-(--primary) cursor-pointer"
-                  href={href}
-                >
-                  {text}
-                </Link>
-              );
-            })}
+            <div className="flex flex-col gap-2">
+              {publicNavigationLinks.links.map((link) => {
+                const { href, text } = link;
+                return (
+                  <Link
+                    key={`footer-${href}`}
+                    className="hover:text-(--primary) cursor-pointer"
+                    href={href}
+                  >
+                    {text}
+                  </Link>
+                );
+              })}
+            </div>
             <ButtonLink
               href={PublicNavCTA.href}
               buttonId={"ccm-footer-public-cta"}

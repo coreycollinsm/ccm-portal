@@ -2,7 +2,12 @@
 
 import { SectionWrapper } from "@/components/sections";
 import { useAuthSession } from "@/context/AuthSessionContext";
-import { ButtonLink, LogoLink, NavLink } from "@/components/ui";
+import {
+  ButtonLink,
+  LogoLink,
+  NavLink,
+  PublicMobileNavigationMenu,
+} from "@/components/ui";
 import { publicNavigationLinks } from "@/config";
 
 export const SiteHeader = () => {
@@ -18,9 +23,7 @@ export const SiteHeader = () => {
           page="nav"
           text={null}
         />
-        <nav className="flex items-center gap-4">
-          {isAuthenticated && <NavLink href="/dashboard">Dashboard</NavLink>}
-          {!isAuthenticated && <NavLink href="/login">Log In</NavLink>}
+        <nav className="hidden md:flex items-center gap-4">
           {publicNavigationLinks.links.map((link) => {
             const { href, text } = link;
             return (
@@ -29,6 +32,8 @@ export const SiteHeader = () => {
               </NavLink>
             );
           })}
+          {isAuthenticated && <NavLink href="/dashboard">Dashboard</NavLink>}
+          {!isAuthenticated && <NavLink href="/login">Log In</NavLink>}
           <ButtonLink
             href={cta.href}
             buttonId={"ccm-nav-cta"}
@@ -37,6 +42,9 @@ export const SiteHeader = () => {
             text={cta.text}
           />
         </nav>
+        <div className="w-full max-w-48 md:hidden">
+          <PublicMobileNavigationMenu />
+        </div>
       </div>
     </SectionWrapper>
   );

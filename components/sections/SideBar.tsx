@@ -26,9 +26,9 @@ export const SideBar = () => {
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full items-center">
-        <LogoutButton />
         <UserEmail />
-        <div className="flex flex-wrap space-x-4 space-y-2">
+        <LogoutButton />
+        <div className="flex flex-wrap space-x-2 space-y-2">
           {publicNavigationLinks.links.map((link) => {
             const { href, text } = link;
             return <SmallLink key={href} href={href} text={text} />;

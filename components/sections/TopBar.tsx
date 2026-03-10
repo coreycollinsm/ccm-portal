@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoLink, MobileNavigationMenu, MobileProfileMenu } from "../ui";
+import { LogoLink, MobileProfileMenu, PrivateMobileNavigationMenu } from "../ui";
 
 export const TopBar = () => {
   return (
@@ -16,7 +16,7 @@ export const TopBar = () => {
       </div>
       <div className="flex flex-col gap-4 w-full items-center">
         <div className="w-full">
-          <MobileNavigationMenu />
+          <PrivateMobileNavigationMenu />
         </div>
       </div>
     </aside>

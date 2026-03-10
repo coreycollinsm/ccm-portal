@@ -20,5 +20,6 @@ export * from "./inline/CardHeader";
 export * from "./inline/UserEmail";
 
 // Menus
-export * from "./menus/MobileNavigationMenu";
+export * from "./menus/PrivateMobileNavigationMenu";
+export * from "./menus/PublicMobileNavigationMenu";
 export * from "./menus/MobileProfileMenu";
