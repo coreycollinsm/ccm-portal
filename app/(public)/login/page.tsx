@@ -1,5 +1,7 @@
+import { SectionWrapper } from "@/components/sections";
+
 const Page = () => {
-  return <div>Login Page</div>;
+  return <SectionWrapper>Login Page</SectionWrapper>;
 };
 
 export default Page;

@@ -27,9 +27,9 @@ const Page = () => {
             <ButtonLink
               backwards
               href="/"
-              buttonId="ccm-portal-404public-returnhome"
+              buttonId="ccm-portal-404private-returntodashboard"
               page="404"
-              text="Return Home"
+              text="Return to Dashboard"
             />
           </div>
         </div>
