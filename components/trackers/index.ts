@@ -1,0 +1,1 @@
+export { TrackingConsent } from "./TrackingConsent";
