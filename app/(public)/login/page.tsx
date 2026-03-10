@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <main>
-      <SectionWrapper className="section-wrap justify-center">
+      <SectionWrapper className="section-wrap py-20 justify-center">
         <LoginForm />
       </SectionWrapper>
     </main>

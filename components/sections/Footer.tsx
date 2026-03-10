@@ -1,6 +1,7 @@
 import { AllSocialLinks, ButtonLink, LogoLink } from "@/components/ui";
 import { SectionWrapper } from "./SectionWrapper";
 import { publicNavigationLinks } from "@/config";
+import Link from "next/link";
 
 export const Footer = () => {
   const PublicNavCTA = publicNavigationLinks.cta;
@@ -28,7 +29,15 @@ export const Footer = () => {
             <h4>Quick Links</h4>
             {publicNavigationLinks.links.map((link) => {
               const { href, text } = link;
-              return <p key={`footer-${href}`}>{text}</p>;
+              return (
+                <Link
+                  key={`footer-${href}`}
+                  className="hover:text-(--primary) cursor-pointer"
+                  href={href}
+                >
+                  {text}
+                </Link>
+              );
             })}
             <ButtonLink
               href={PublicNavCTA.href}
