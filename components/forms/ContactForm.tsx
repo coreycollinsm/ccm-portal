@@ -1,4 +1,5 @@
 "use client";
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import { useRouter } from "next/navigation";
 import { SubmitEvent, useState } from "react";
 import { SubmitButton } from "@/components/ui";
@@ -33,18 +34,13 @@ export const ContactForm = ({ className }: { className?: string }) => {
     };
 
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_API_ENDPOINT
-          ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}/contact`
-          : "https://api.coreycollinsm.com/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(submission),
+      const response = await fetch(getEndpointURL("/contact"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(submission),
+      });
 
       let result = null;
       try {

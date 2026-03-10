@@ -1,4 +1,5 @@
 "use client";
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import { getTimestamp } from "@/utils/dateUtils";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -196,10 +197,7 @@ const AnimatedIcon = ({
 ///////////////////////////
 
 const handleClickTracking = (page: string, buttonId: string) => {
-  // Get the API URL
-  const API_URL = process.env.NEXT_PUBLIC_API_ENDPOINT
-    ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}/tracking/button-clicks`
-    : "https://api.coreycollinsm.com/tracking/button-clicks";
+  const API_URL = getEndpointURL("/tracking/button-clicks");
 
   const timestamp = getTimestamp();
 

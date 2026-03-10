@@ -1,5 +1,6 @@
 "use client";
 
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 type AuthSessionUser = {
@@ -16,22 +17,6 @@ type AuthSessionContextValue = {
 
 const AuthSessionContext = createContext<AuthSessionContextValue | null>(null);
 
-const PRODUCTION_API_FALLBACK = "https://api.coreycollinsm.com";
-
-const getApiEndpoint = () => {
-  const configuredEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
-
-  if (configuredEndpoint) {
-    return configuredEndpoint.replace(/\/+$/, "");
-  }
-
-  if (process.env.NODE_ENV === "production") {
-    return PRODUCTION_API_FALLBACK;
-  }
-
-  return null;
-};
-
 const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
   if (!value || typeof value !== "object") return false;
 
@@ -45,11 +30,8 @@ const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
 };
 
 const getAuthSessionUser = async () => {
-  const apiEndpoint = getApiEndpoint();
-  if (!apiEndpoint) return null;
-
   try {
-    const response = await fetch(`${apiEndpoint}/auth/me`, {
+    const response = await fetch(getEndpointURL("/auth/me"), {
       method: "GET",
       credentials: "include",
       cache: "no-store",

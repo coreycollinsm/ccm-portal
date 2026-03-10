@@ -1,6 +1,7 @@
 "use client";
 
 import { SubmitButton } from "@/components/ui";
+import { getEndpointURL } from "@/lib/api/getEndpointURL";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitEvent, useState } from "react";
@@ -31,19 +32,14 @@ export const LoginForm = ({ className }: { className?: string }) => {
     setErrorMessage("");
 
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_API_ENDPOINT
-          ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/login`
-          : "https://api.coreycollinsm.com/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ email, password }),
+      const response = await fetch(getEndpointURL("/auth/login"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
 
       let result: LoginResponse | null = null;
       try {

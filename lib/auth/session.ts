@@ -1,25 +1,10 @@
 import { cookies } from "next/headers";
+import { getEndpointURL } from "../api/getEndpointURL";
 
 export type AuthSessionUser = {
   id: string;
   email: string;
   role: string;
-};
-
-const PRODUCTION_API_FALLBACK = "https://api.coreycollinsm.com";
-
-const getApiEndpoint = () => {
-  const configuredEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
-
-  if (configuredEndpoint) {
-    return configuredEndpoint.replace(/\/+$/, "");
-  }
-
-  if (process.env.NODE_ENV === "production") {
-    return PRODUCTION_API_FALLBACK;
-  }
-
-  return null;
 };
 
 const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
@@ -35,14 +20,11 @@ const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
 };
 
 export const getAuthSessionUser = async (): Promise<AuthSessionUser | null> => {
-  const apiEndpoint = getApiEndpoint();
-  if (!apiEndpoint) return null;
-
   try {
     const cookieStore = await cookies();
     const cookieHeader = cookieStore.toString();
 
-    const response = await fetch(`${apiEndpoint}/auth/me`, {
+    const response = await fetch(getEndpointURL("/auth/me"), {
       method: "GET",
       headers: cookieHeader ? { Cookie: cookieHeader } : undefined,
       cache: "no-store",
