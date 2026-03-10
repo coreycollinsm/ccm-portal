@@ -1,4 +1,4 @@
-import { SideBar } from "@/components/sections";
+import { SideBar, TopBar } from "@/components/sections";
 import { validateAuthSession } from "@/lib/";
 import { redirect } from "next/navigation";
 import "../globals.css";
@@ -19,9 +19,10 @@ export default async function ProtectedLayout({
 
   return (
     <html lang="en">
-      <body className="flex">
+      <body className="flex md:flex-row flex-col">
         <AuthSessionProvider>
           <SideBar />
+          <TopBar />
         </AuthSessionProvider>
         <main className="bg-white w-full p-8">{children}</main>
       </body>
