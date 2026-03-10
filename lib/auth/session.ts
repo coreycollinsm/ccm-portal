@@ -6,12 +6,21 @@ export type AuthSessionUser = {
   role: string;
 };
 
-const DEFAULT_BASE_API_URL = "https://api.coreycollinsm.com";
-const API_PATH = "/tracking/page-views";
+const PRODUCTION_API_FALLBACK = "https://api.coreycollinsm.com";
 
-const API_URL = process.env.NEXT_PUBLIC_API_ENDPOINT
-  ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}${API_PATH}`
-  : `${DEFAULT_BASE_API_URL}${API_PATH}`;
+const getApiEndpoint = () => {
+  const configuredEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT?.trim();
+
+  if (configuredEndpoint) {
+    return configuredEndpoint.replace(/\/+$/, "");
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    return PRODUCTION_API_FALLBACK;
+  }
+
+  return null;
+};
 
 const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
   if (!value || typeof value !== "object") return false;
@@ -26,7 +35,7 @@ const isAuthSessionUser = (value: unknown): value is AuthSessionUser => {
 };
 
 export const getAuthSessionUser = async (): Promise<AuthSessionUser | null> => {
-  const apiEndpoint = API_URL;
+  const apiEndpoint = getApiEndpoint();
   if (!apiEndpoint) return null;
 
   try {
@@ -41,10 +50,25 @@ export const getAuthSessionUser = async (): Promise<AuthSessionUser | null> => {
 
     if (!response.ok) return null;
 
-    const responseBody = await response.json();
-    if (!isAuthSessionUser(responseBody)) return null;
+    const responseBody: unknown = await response.json();
 
-    return responseBody;
+    if (isAuthSessionUser(responseBody)) {
+      return responseBody;
+    }
+
+    if (
+      responseBody &&
+      typeof responseBody === "object" &&
+      "data" in responseBody &&
+      responseBody.data &&
+      typeof responseBody.data === "object" &&
+      "user" in responseBody.data &&
+      isAuthSessionUser(responseBody.data.user)
+    ) {
+      return responseBody.data.user;
+    }
+
+    return null;
   } catch {
     return null;
   }

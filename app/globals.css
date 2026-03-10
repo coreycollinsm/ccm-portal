@@ -30,14 +30,6 @@
     @apply text-base font-medium uppercase tracking-wide;
     line-height: 1.4;
   }
-
-  input {
-    @apply border border-(--gray) rounded-md bg-(--dark-gray) text-white py-1 px-2;
-  }
-
-  textarea {
-    @apply border border-(--gray) rounded-md bg-(--dark-gray) text-white py-1 px-2 resize-none;
-  }
 }
 
 @layer components {
@@ -50,6 +42,12 @@
     @apply border shadow-sm min-w-100 bg-(--almost-black);
     border-width: 1px;
     border-color: var(--dark-gray);
+  }
+  .input {
+    @apply border border-(--brighter-gray) rounded-md bg-(--almost-white) py-1 px-2;
+  }
+  .input-dark {
+    @apply border border-(--gray) rounded-md bg-(--dark-gray) text-white py-1 px-2;
   }
   .padding {
     @apply p-4 sm:p-8;
@@ -71,6 +69,12 @@
   }
   .section-wrap-reverse {
     @apply flex flex-col-reverse lg:flex-row gap-16 lg:gap-8;
+  }
+  .textarea {
+    @apply border border-(--brighter-gray) rounded-md bg-(--almost-white) text-white py-1 px-2 resize-none;
+  }
+  .textarea-dark {
+    @apply border border-(--gray) rounded-md bg-(--dark-gray) text-white py-1 px-2 resize-none;
   }
   .round {
     @apply rounded-2xl sm:rounded-4xl;
@@ -96,7 +100,8 @@
   --gray: #555;
   --light-gray: #747474;
   --bright-gray: #a7a7a7;
-  --almost-white: #f8f8f8;
+  --brighter-gray: #f0f0f0;
+  --almost-white: #f7f7f7;
 }
 
 body {
