@@ -1,5 +1,5 @@
 import { SectionWrapper } from "@/components/sections";
-import { ButtonLink, LogoLink } from "@/components/ui";
+import { ButtonLink, LogoLink, NavLink } from "@/components/ui";
 
 export const SiteHeader = () => {
   return (
@@ -11,16 +11,8 @@ export const SiteHeader = () => {
           page="nav"
           text={null}
         />
-        <nav className="flex items-center gap-2">
-          <ButtonLink
-            href={"/Corey%20Collins%20-%20Resume.pdf"}
-            buttonId={"ccm-nav-resume"}
-            download
-            page={"nav"}
-            size="small"
-            style="secondary"
-            text={"Resume"}
-          />
+        <nav className="flex items-center gap-4">
+          <NavLink href="/terms-of-service">Terms of Service</NavLink>
           <ButtonLink
             href={"/contact"}
             buttonId={"ccm-nav-contact"}
